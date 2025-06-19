@@ -5,6 +5,7 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
+      - run: rm -rf /usr/local/share/boost && rm -rf $AGENT_TOOLSDIRECTORY && rm -rf /usr/share/dotnet && rm -rf /opt/ghc && echo "Storage Space Workaround completed!"
       - run: wget https://raw.githubusercontent.com/akhilnarang/scripts/master/setup/android_build_env.sh
       - run: bash android_build_env.sh
       - run: mkdir pixelos && cd pixelos
