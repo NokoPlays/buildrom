@@ -5,7 +5,9 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: rm -rf /usr/local/share/boost && rm -rf $AGENT_TOOLSDIRECTORY && rm -rf /usr/share/dotnet && rm -rf /opt/ghc && echo "Storage Space Workaround completed!"
+      - run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+      - run: sudo docker image prune --all --force
+      - run: sudo docker builder prune -a
       - run: wget https://raw.githubusercontent.com/akhilnarang/scripts/master/setup/android_build_env.sh
       - run: bash android_build_env.sh
       - run: mkdir pixelos && cd pixelos
