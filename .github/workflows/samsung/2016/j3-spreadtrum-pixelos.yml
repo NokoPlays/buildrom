@@ -1,0 +1,17 @@
+name: PixelOS for Galaxy J3 2016 (Spreadtrum)
+run-name: buildrom
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: wget https://raw.githubusercontent.com/akhilnarang/scripts/master/setup/android_build_env.sh
+      - run: bash android_build_env.sh
+      - run: mkdir pixelos && cd pixelos
+      - run: repo init -u https://github.com/PixelOS-AOSP/manifest.git -b fifteen
+      - run: repo sync
+      - run: cd kernel
+      - run: git clone https://github.com/djeman/android_kernel_samsung_sharkls.git
+      - run: cd ../
+      - run: lunch aosp_samsung_sharkls-user
+      - run: mka bacon -j$(nproc --all)
